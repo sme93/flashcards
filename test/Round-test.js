@@ -79,4 +79,31 @@ describe('Round', () => {
 
     expect(defaultRound.calculatePercentCorrect()).to.equal(67);
   });
+
+  describe('when creating a new round', function() {
+    it('should return a new round instance', function() {
+
+      expect(defaultRound.endRound()).to.be.an.instanceOf(Round);
+    });
+
+    it('resets turns to zero', function() {
+      const mockRound = new Round(defaultDeck)
+      mockRound.takeTurn("capybara");
+      mockRound.takeTurn("spleen"); 
+      mockRound.takeTurn("bubble wrap");
+      const round = mockRound.endRound();
+
+      expect(round.turns).to.equal(0);
+    });
+
+    it('creates a new round from incorrect guesses', function() {
+      const mockRound = new Round(defaultDeck)
+      mockRound.takeTurn("first incorrect guess");
+      mockRound.takeTurn("second incorrect guess"); 
+      mockRound.takeTurn("third incorrect guess");
+      const round = mockRound.endRound();
+
+      expect(round.deck.deckCards.length).to.equal(3);
+    });
+  });  
 });
