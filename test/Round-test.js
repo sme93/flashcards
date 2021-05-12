@@ -72,7 +72,7 @@ describe('Round', () => {
     expect(badAnswer).to.equal('Incorrect!');
   });
 
-  it.only('should calculate the percent correct', () => {
+  it('should calculate the percent correct', () => {
     defaultRound.takeTurn('sea otter');
     defaultRound.takeTurn('gallbladder');
     defaultRound.takeTurn('watching Netflix');
