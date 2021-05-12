@@ -8,7 +8,7 @@ class Round {
   }
 
   returnCurrentCard() {
-    return this.deck.deckCards[this.turns]
+    return this.deck.deckCards[this.turns];
   }
 
   takeTurn(userGuess) {
