@@ -28,7 +28,7 @@ Once you have cloned the repo, change into the directory and install the library
 npm install
 ```
 
-To check to see if all the tests that were written for this program are passing, run `npm test` in your terminal. There should be 36 passing tests.
+To check to see if all the tests that were written for this program are passing, run `npm test` in your terminal. There should be 34 passing tests.
 
 To run the program:
 
