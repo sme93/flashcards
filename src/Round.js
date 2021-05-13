@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const Turn = require("./Turn");
 const data = require('./data');
 const prototypeQuestions = data.prototypeData;
@@ -33,22 +34,35 @@ class Round {
   }
 
   endRound() {
-    const message = `**Round over!**
+    const message = `**ROUND OVER!**
     You answered ${this.calculatePercentCorrect()}% of the questions correctly!`
-    // eslint-disable-next-line no-console
+    const successMessage = `NICE JOB! YOU GOT THEM ALL RIGHT!`
+    
     console.log(message);
-    const cards = prototypeQuestions.filter(question => {
+    if (this.incorrectGuesses.length) {
+      return this.retryRound();
+    } 
+    
+    console.log(successMessage);
+    const deck = new Deck([]);
+    return new Round(deck);
+  }
+
+  retryRound() {
+    const retryMessage = `NICE TRY. 
+        Try again with the cards you missed the first time!`
+    console.log(retryMessage)
+    const cards = prototypeQuestions.reduce((acc, question) => {
       if (this.incorrectGuesses.includes(question.id)) {
-        return question
-      }
-    })
-      .map(question => {
-        return new Card(
+        acc.push(new Card(
           question.id, 
           question.question, 
           question.answers, 
           question.correctAnswer)
-      })
+        );
+      }
+      return acc;
+    }, []);
     const deck = new Deck(cards);
     return new Round(deck);
   }

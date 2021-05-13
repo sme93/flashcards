@@ -102,7 +102,6 @@ describe('Round', () => {
       mockRound.takeTurn("second incorrect guess"); 
       mockRound.takeTurn("third incorrect guess");
       const round = mockRound.endRound();
-
       expect(round.deck.deckCards.length).to.equal(3);
     });
   });  
